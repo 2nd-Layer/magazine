@@ -54,6 +54,9 @@
     <link rel="stylesheet"
           href="<?php echo get_bloginfo('template_directory'); ?>/dist/css/main.bundle.css"
     />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"
+    />
     <script async src="<?php echo get_bloginfo('template_directory'); ?>/dist/js/bundle.js"></script>
     <link rel="preload" as="style" href="<?php echo get_bloginfo('template_directory'); ?>/style.css">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -137,4 +140,4 @@
         <!-- END HEADER NAV -->
       </div>
     </header>
-    <?php get_get_sidebar('menu-left'); ?>
+    <?php get_sidebar('menu-left'); ?>
