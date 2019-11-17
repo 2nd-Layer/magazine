@@ -14,18 +14,16 @@ RUN yum update -y && \
 RUN curl --tlsv1.2 -o /usr/local/bin/wp-cli https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
     chmod +x /usr/local/bin/wp-cli
 
+COPY etc/supervisord.d/* /etc/supervisord.d/
+COPY usr/local/bin/docker-entrypoint.sh /usr/local/bin/
+
 WORKDIR /var/www/default/html
 
 USER nginx
 RUN wp-cli core download --skip-content
 COPY src/wordpress/ ./
 
-USER mysql
-RUN mysql_install_db
-
 USER root
-
-ADD etc/supervisord.d/ /etc/supervisord.d/
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
